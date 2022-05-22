@@ -29,6 +29,14 @@ var converted = Double
             var round = df.format(converted).toDouble()
             return round
         }
+        if (currency == "4"){
+            val rupee = 1.26
+            var converted = amount * rupee
+            val df = DecimalFormat("#.##")
+            df.roundingMode = RoundingMode.UP
+            var round = df.format(converted).toDouble()
+            return round
+        }
         return 0
     }
 }
@@ -42,6 +50,7 @@ fun main(args: Array<String>){
         println("1. Yen")
         println("2. Pesos")
         println("3. Pounds")
+        println("4. Rupees")
         println("0. Quit")
         currency = readLine().toString()
 
@@ -69,6 +78,12 @@ fun main(args: Array<String>){
         if(currency == "3"){
             println()
             println("$$amount USD is roughly £" + Currency().convert(currency, amount)+" British Pounds.")
+            currency = "0"
+            break
+        }
+        if(currency == "4"){
+            println()
+            println("$$amount USD is roughly ₹" + Currency().convert(currency, amount)+" Indian Rupees.")
             currency = "0"
             break
         }
